@@ -1,6 +1,6 @@
 """
 File: staff.py
-Description: ****DESCRIPTION*****
+Description: Staff module for advanced programming assignment containing staff abstract class and children
 Author: Natasha Hunter
 ID: 110439590
 Username: hunny006
@@ -186,10 +186,10 @@ class Zookeeper(Staff):
             # check if length of amimals_to_feed list is less than max allowed
             self.animals_to_feed.append(animal)
             # add animal to zookeeper's list
-            print(f'{animal.name} has been added to {self.name}\'s care list')
+            return(f'{animal.name} has been added to {self.name}\'s care list')
             # advise user animal was added
         else:
-            print(f'{self.name} is assigned {self.max_animals} animals and cannot be assigned any more. Please find '
+            return(f'{self.name} is assigned {self.max_animals} animals and cannot be assigned any more. Please find '
                   f'another staff member to feed this animal')
             # advise user zookeeper cannot take any more animals
 
@@ -201,9 +201,8 @@ class Zookeeper(Staff):
         '''
         enclosure.set_cleanliness(5)
         # reset enclosure's cleanliness rating to 5
-        print(f'{enclosure.name} has been cleaned to {enclosure.cleanlines} star rating')
+        return(f'{enclosure.name} has been cleaned to {enclosure.cleanliness} star rating')
         # advise user of cleaning
-
 
     def feed_animals(self, animal):
         '''
@@ -211,8 +210,25 @@ class Zookeeper(Staff):
         :param animal: object of class Animal
         :return: message advising user animal was fed
         '''
-        print(f'{animal.name} has been fed {animal.dietary_requirements}')
+        return(f'{animal.name} has been fed {animal.dietary_requirements}')
         # advise user that animal was fed their diet
+
+    def zookeeper_report(self):
+        for staff in Staff.Staff_list:
+            if staff.__class__.__name__ == 'Zookeeper':
+                print(staff.name)
+
+    def zookeeper_can_clean_report(self):
+        for staff in Staff.Staff_list:
+            if staff.__class__.__name__ == 'Zookeeper':
+                if len(staff.enclosures_to_clean) < self.max_enclosures:
+                    print(f'{staff.name} : capacity = {self.max_enclosures - len(staff.enclosures_to_clean)} enclosures')
+
+    def zookeeper_can_feed_report(self):
+        for staff in Staff.Staff_list:
+            if staff.__class__.__name__ == 'Zookeeper':
+                if len(staff.animals_to_feed) < self.max_animals:
+                    print(f'{staff.name} : capacity = {self.max_animals - len(staff.animals_to_feed)} animals')
 
 class Vet(Staff):
     '''
@@ -274,6 +290,8 @@ class Vet(Staff):
         # set up of first aid list, in case any animals under care require first aid
         health_check_list = []
         # set up of health check list. All animals under care require routine health checks
+        overflow = []
+        # set up of overflow list for extra work
         for animal in self.animals_under_care:
             health_check_list.append(f'{animal.name} health check')
             # all animals require routine health checks and are added to the health check list
@@ -298,9 +316,7 @@ class Vet(Staff):
             work_list.append('Ad hoc duties')
 
         while len(work_list) > 9:
-            # wile there is too much work for one day
-            overflow = []
-            # set up of overflow list for extra work
+            # while there is too much work for one day
             overflow.append(work_list[9])
             # add the 10th item from the work list to the overflow list
             work_list.pop(9)
@@ -356,7 +372,7 @@ class Vet(Staff):
             # place animal under treatment
             animal.health_issues.append(health_issues.Illness('Measles', 'spotty', 1/1/2025, 'bad'))
             # create health issue and add to animal's health issues
-            print(f'{animal.name} has an illness and has been declared under treatment')
+            return(f'{animal.name} has an illness and has been declared under treatment')
             # advise user of illness
         elif animal.health_status == 'perfect' and sick == 2:
             # 10% chance healthy animal found to have injury
@@ -364,7 +380,7 @@ class Vet(Staff):
             # place animal under treatment
             animal.health_issues.append(health_issues.Injury('Wound','bloody',1/1/24,'minor'))
             # create health issue and add to animals health issues
-            print(f'{animal.name} has an injury and has been declared under treatment')
+            return(f'{animal.name} has an injury and has been declared under treatment')
             # advise user of injury
         elif animal.health_status == 'perfect' and sick == 3:
             # 10% chance healthy animal found to have behavioural issue
@@ -372,18 +388,18 @@ class Vet(Staff):
             # place animal under treatment
             animal.health_issues.append(health_issues.Behavioural_Issue('Agrression','Animal hates everyone and is dangerous',1/1/25,'severe'))
             # create health issue and add to animal's health issues
-            print(f'{animal.name} has a behavioural issue and has been declared under treatment')
+            return(f'{animal.name} has a behavioural issue and has been declared under treatment')
         elif animal.health_status == 'under treatment' and sick > 5:
         # 50% chance an unhealthy animal will be reviewed and declared healthy
             animal.health_status = 'perfect'
             # remove animal from under treatment by changing health status
             animal.health_issues = []
             # clear animal's health issues
-            print(f'{animal.name} has been declared healed')
+            return(f'{animal.name} has been declared healed')
             # advise user of cleared animal
         else:
         # if no change in status:
-            print(f'{animal.name} is still {animal.health_status}')
+            return(f'{animal.name} is still {animal.health_status}')
 
     def perform_surgery(self,animal):
         '''
@@ -396,10 +412,21 @@ class Vet(Staff):
         if success > 3:
         # 70% chance of successful surgery
             animal.health_status = 'perfect'
-            print(f'Successful surgery performed on {animal}\n{animal} has been declared healed')
+            return(f'Successful surgery performed on {animal}\n{animal} has been declared healed')
         else:
         # 30% chance of unsuccessful surgery
-            print(f'Unsuccessful surgery performed on {animal}\n{animal} remains under treatment')
+            return(f'Unsuccessful surgery performed on {animal}\n{animal} remains under treatment')
+
+    def vet_report(self):
+        for staff in Staff.Staff_list:
+            if staff.__class__.__name__ == 'Vet':
+                print(staff.name)
+
+    def vet_can_care_report(self):
+        for staff in Staff.Staff_list:
+            if staff.__class__.__name__ == 'Vet':
+                if len(staff.animals_under_care) < self.max_animals:
+                    print(f'{staff.name}: capacity= {self.max_animals - len(staff.animals_under_care)} animals')
 
 
 class GiftShop(Staff):
