@@ -163,7 +163,7 @@ class Behavioural_Issue(HealthIssue):
         A method to choose and set a treatment plan for the behavioural issue
         :return: treatment plan
         '''
-        treatment_options = ['Wait and see', 'Therapy']
+        treatment_options = ['Wait and see', 'Therapy','Medication']
         self.treatment_plan = treatment_options[random.randint(0, len(treatment_options)-1)]
 
     def __init__(self, name, description, date_reported, severity):
@@ -176,10 +176,3 @@ class Behavioural_Issue(HealthIssue):
 
 
 
-measles = Illness('Measles','gross','1/1/25','bad')
-print(measles)
-injury2 = Injury('Broken Leg','nasty, nasty','1/2/23','meh')
-print(injury2)
-bi = Behavioural_Issue('Aggression','animal hates everyone- dangerous to be around','1/1/23','severe')
-print(bi)
-print(HealthIssue.counter)
