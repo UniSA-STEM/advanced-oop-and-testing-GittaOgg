@@ -194,7 +194,7 @@ class Enclosure():
     def enclosure_cleanliness_report(self):
         print('\n**** Enclosures Cleanliness ****')
         for enclosure in Enclosure.Enclosure_list:
-            print(f'{enclosure.name} : {enclosure.cleanliness()}')
+            print(f'{enclosure.name} : {enclosure.cleanliness}')
 
 
 
