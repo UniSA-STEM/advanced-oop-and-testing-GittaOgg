@@ -214,17 +214,20 @@ class Zookeeper(Staff):
         # advise user that animal was fed their diet
 
     def zookeeper_report(self):
+        print('\n**** Zookeepers at the Zoo ****')
         for staff in Staff.Staff_list:
             if staff.__class__.__name__ == 'Zookeeper':
                 print(staff.name)
 
     def zookeeper_can_clean_report(self):
+        print('\n**** Zookeepers with Capacity for Additional Enclosures ****')
         for staff in Staff.Staff_list:
             if staff.__class__.__name__ == 'Zookeeper':
                 if len(staff.enclosures_to_clean) < self.max_enclosures:
                     print(f'{staff.name} : capacity = {self.max_enclosures - len(staff.enclosures_to_clean)} enclosures')
 
     def zookeeper_can_feed_report(self):
+        print('\n**** Zookeepers with Capacity for Additional Animals ****')
         for staff in Staff.Staff_list:
             if staff.__class__.__name__ == 'Zookeeper':
                 if len(staff.animals_to_feed) < self.max_animals:
@@ -418,11 +421,13 @@ class Vet(Staff):
             return(f'Unsuccessful surgery performed on {animal}\n{animal} remains under treatment')
 
     def vet_report(self):
+        print('\n**** Vets at Zoo ****')
         for staff in Staff.Staff_list:
             if staff.__class__.__name__ == 'Vet':
                 print(staff.name)
 
     def vet_can_care_report(self):
+        print('\n**** Vets with Capacity for Additional Animals ****')
         for staff in Staff.Staff_list:
             if staff.__class__.__name__ == 'Vet':
                 if len(staff.animals_under_care) < self.max_animals:

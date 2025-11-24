@@ -179,6 +179,24 @@ class Enclosure():
             # if animal is not here then return warning message
             return(f'{animal} not found in this enclosure')
 
+    def enclosure_report(self):
+        print('\n**** Enclosures at the Zoo ****')
+        for enclosure in Enclosure.Enclosure_list:
+            print(f'{enclosure.name} : {enclosure.size} {enclosure.environment} enclosure holding {len(enclosure.animals)} animals')
+
+    def enclosure_capacity_report(self):
+        print('\n**** Enclosures With Capacity ****')
+        for enclosure in Enclosure.Enclosure_list:
+            if len(self.animals) < self.size_limits[self.size]:
+                print(f'{enclosure.name} : {enclosure.environment} with capacity for {self.size_limits[self.size] -len(enclosure.animals)} more animals')
+
+
+    def enclosure_cleanliness_report(self):
+        print('\n**** Enclosures Cleanliness ****')
+        for enclosure in Enclosure.Enclosure_list:
+            print(f'{enclosure.name} : {enclosure.cleanliness()}')
+
+
 
     name = property(get_name)
     size = property(get_size)

@@ -146,6 +146,19 @@ class Bird(Animal):
         '''
         return(f'{self.name} flies like a bird')
 
+    def bird_treatment_report(self):
+        print('\n**** Birds under Treatment ****')
+        for bird in Animal.Animal_list:
+            if bird.__class__.__name__ == 'Bird':
+                if bird.health_status == 'under treatment':
+                    print(f'{bird.name}')
+
+    def bird_report(self):
+        print('\n**** Birds at the Zoo ****')
+        for bird in Animal.Animal_list:
+            if bird.__class__.__name__ == 'Bird':
+                print(f'{bird.name} : {bird.age} yr old {bird.species}')
+
 
 
 class Mammal(Animal):
@@ -214,6 +227,19 @@ class Mammal(Animal):
         '''
         return(f'{self.name} sleeps like a mammal')
 
+    def mammal_treatment_report(self):
+        print('\n**** Mammals under Treatment ****')
+        for mammal in Animal.Animal_list:
+            if mammal.__class__.__name__ == 'Mammal':
+                if mammal.health_status == 'under treatment':
+                    print(f'{mammal.name}')
+
+    def mammal_report(self):
+        print('\n**** Mammals at the Zoo ****')
+        for mammal in Animal.Animal_list:
+            if mammal.__class__.__name__ == 'Bird':
+                print(f'{mammal.name} : {mammal.age} yr old {mammal.species}')
+
 
 
 class Reptile(Animal):
@@ -280,8 +306,18 @@ class Reptile(Animal):
         '''
         return(f'{self.name} sleeps like a reptile')
 
+    def reptile_treatment_report(self):
+        print('\n**** Reptiles under Treatment ****')
+        for reptile in Animal.Animal_list:
+            if reptile.__class__.__name__ == 'Reptile':
+                if reptile.health_status == 'under treatment':
+                    print(f'{reptile.name}')
 
-
+    def reptile_report(self):
+        print('\n**** Reptiles at the Zoo ****')
+        for reptile in Animal.Animal_list:
+            if reptile.__class__.__name__ == 'Reptile':
+                print(f'{reptile.name} : {reptile.age} yr old {reptile.species}')
 
 
 
